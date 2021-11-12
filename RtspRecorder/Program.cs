@@ -57,7 +57,8 @@ rootCommand.Handler = CommandHandler.Create<string, string, string, string, bool
     }
     catch (Exception ex)
     {
-        Console.Error.WriteLine(ex.Message);
+        if (detail || ex.GetType() != typeof(IOException))
+            Console.Error.WriteLine(Environment.NewLine + ex.Message);
     }
 });
 

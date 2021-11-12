@@ -18,6 +18,7 @@ namespace RtspRecorder
         private bool stopFlag = false;
         private int recCount = 0;
         private long streamSize = 0L;
+        private long streamSizeLast = 0L;
         public bool Detail { get; set; } = false;
         public bool StdOut { get; set; } = false;
         public string Program { get; set; }
@@ -87,13 +88,23 @@ namespace RtspRecorder
                     return;
 
                 recCount++;
-                if (recCount > RecDurLimit && RecDurLimit > 0) 
+                if (RecDurLimit > 0 && recCount > RecDurLimit) 
                 {
                     timer.Stop();
                     stopFlag = true;
                 }
-                if (!StdOut)
-                    Console.Write("\rReceiving... [" + Util.FormatTime(recCount) + $"] [{Util.FormatFileSize(streamSize)}]" + "");
+                var size = Util.FormatFileSize(streamSize);
+                if (streamSize != streamSizeLast)
+                {
+                    if (!StdOut) Console.Write("\rReceiving... [" + Util.FormatTime(recCount) + $"] [{size}]" + "".PadRight(6));
+                    streamSizeLast = streamSize;
+                }
+                else
+                {
+                    //无数据，断开连接
+                    Console.WriteLine();
+                    Close();
+                }
                 //Console.SetCursorPosition(0, Console.GetCursorPosition().Item2);
             };
             timer.Start();
@@ -190,6 +201,7 @@ namespace RtspRecorder
                     }
                 }
             }
+            bufferWriter.Flush();
         }
 
         public void Close()

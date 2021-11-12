@@ -129,8 +129,8 @@ namespace RtspRecorder
         {
             if (url.Contains("/PLTV/"))
             {
-                url = url.Replace("/PLTV/", "/TVOD/");
-                url += "&playseek=" + string.Join("-", arr);
+                url += url.Contains("?") ? "&" : "?";
+                url += "playseek=" + string.Join("-", arr);
                 url += arr.Length == 1 ? "-20991231235959" : "";
             }
             else

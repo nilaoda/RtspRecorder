@@ -19,6 +19,18 @@ Options:
   -?, -h, --help                  Show help and usage information
 ```
 
+# Output
+```
+Connecting...Connected.
+Connecting...Connected.
+Output... Record_2021-11-14_03-03-09-819.ts
+Program 1
+  Metadata:
+    service_name    :  JIANGSU-HD
+    service_provider:  JSBC
+Receiving... [live] [00m31s] [52.09MB]
+```
+
 # Examples
 ### 快速上手
 ```

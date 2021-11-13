@@ -194,7 +194,7 @@ namespace RtspRecorder
                         var arr = reader.ReadBytes(2);
                         if (BitConverter.IsLittleEndian)
                             Array.Reverse(arr);
-                        int length = BitConverter.ToInt16(arr, 0);
+                        int length = BitConverter.ToUInt16(arr, 0);
                         var data = reader.ReadBytes(length); //TS data
                         bufferWriter.Write(data);
                         streamSize += data.Length;

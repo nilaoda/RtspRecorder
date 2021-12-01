@@ -196,7 +196,7 @@ namespace RtspRecorder
             using var output = StdOut ? Console.OpenStandardOutput() : new FileStream(OutName, FileMode.Create);
             using var bufferWriter = new BufferedStream(output, 2048);
             /**           ___________________
-             * TCP Header | 4 Bits          | TS Data (7*188)
+             * TCP Header | 4 Byte          | TS Data (7*188)
              *            | $ | id | Length |
              *            -------------------
              */

@@ -96,7 +96,7 @@ Scale: 1.0
 客户端发起`PLAY`后，客户端可以从服务端开始读取数据。在`MP2T/TCP`模式下，数据构成如下：
 ```
            ___________________
-TCP Header | 4 Bits          | TS Data (7*188)
+TCP Header | 4 Byte          | TS Data (7*188)
            | $ | id | Length |
            -------------------
 ```
